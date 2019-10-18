@@ -1,0 +1,128 @@
+query productReviews($productId: String, $page: String, $count: String, $orderBy: String, $filters: String) {
+	productReviews(productId: $productId, page: $page, count: $count, orderBy: $orderBy, filters: $filters) {
+
+    HasErrors
+    Total
+    CurrentPage
+    ErrorList
+    Element {
+      Rating
+      TotalRatings
+      Keywords {
+        HasResults
+        KeywordList {
+          Count
+          Keyword
+          Rating
+        }
+      }
+      Recommend {
+        TotalReviews
+        Recommend
+        DontRecommend
+        RecommendPercent
+      }
+      FieldSummary {
+        FieldList {
+          FieldTitle
+          Total
+          TotalReviews
+          Average
+        }
+      }
+      RatingHistogram {
+        RatingList {
+          Rate
+          Total
+          TotalReviews
+          PercentRating
+        }
+      }
+      Reviews {
+        ReviewId
+        Rating
+        Review
+        Date
+        Likes
+        Dislikes
+        ReferenceOrder
+        CustomerPhotos
+        User {
+          YourviewsUserId
+          Name
+          Email
+          City
+          State
+          ZipCode
+          IPAddress
+          UserId
+        }
+        CustomFields {
+          Name
+          Values
+        }
+      }
+      Filters {
+        Name
+        FilterId
+        FilterValues {
+          FilterValueId
+          Count
+          Name
+        }
+      }
+      ReviewBattle {
+        HasResults
+        WorstReview {
+          ReviewId
+          Rating
+          Review
+          Date
+          Likes
+          Dislikes
+          ReferenceOrder
+          CustomerPhotos
+          User {
+            YourviewsUserId
+            Name
+            Email
+            City
+            State
+            ZipCode
+            IPAddress
+            UserId
+          }
+          CustomFields {
+            Name
+            Values
+          }
+        }
+        BestReview {
+          ReviewId
+          Rating
+          Review
+          Date
+          Likes
+          Dislikes
+          ReferenceOrder
+          CustomerPhotos
+          User {
+            YourviewsUserId
+            Name
+            Email
+            City
+            State
+            ZipCode
+            IPAddress
+            UserId
+          }
+          CustomFields {
+            Name
+            Values
+          }
+        }
+      }
+    }
+
+  }
+}

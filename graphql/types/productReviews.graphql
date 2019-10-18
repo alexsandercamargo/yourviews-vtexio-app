@@ -1,0 +1,214 @@
+
+
+type Include {
+  Products: [Products]
+}
+
+type Products {
+  ReviewStatistics: ReviewStatistics
+}
+
+type ReviewStatistics {
+  TotalReviewCount: Int
+  AverageOverallRating: Float
+  RatingDistribution: [RatingDistribution]
+}
+
+type RatingDistribution {
+  RatingValue: Int
+  Count: Int
+}
+
+type Results {
+  Id: String
+  Rating: Int
+  TotalCommentCount: Int
+  IsRatingsOnly: Boolean
+  TotalFeedbackCount: Int
+  IsRecommended: Boolean
+  SecondaryRatingsOrder: [String]
+  TotalNegativeFeedbackCount: Int
+  TotalPositiveFeedbackCount: Int
+  UserNickname: String
+  UserLocation: String
+  SubmissionTime: String
+  Title: String
+  ReviewText: String
+  SecondaryRatings: SecondaryRatings
+  TagDimensions: TagDimensions
+  Photos: [Photo]
+}
+
+type Photo {
+  Sizes: ImageSize
+}
+
+type ImageSize {
+  normal: Image
+  thumbnail: Image
+}
+
+type Image {
+  Url: String
+}
+
+type TagDimensions {
+  Pros: Pros
+  Cons: Cons
+}
+type Pros {
+  Values: [String]
+  Id: String
+  Label: String
+}
+type Cons {
+  Values: [String]
+  Id: String
+  Label: String
+}
+
+type SecondaryRatings {
+  Size: Size
+  Quality: Quality
+}
+
+type Size {
+  Value: Int
+  Id: String
+  ValueRange: Int
+  ValueLabel: String
+  MinLabel: String
+  Label: String
+  DisplayType: String
+  MaxLabel: String
+}
+type Quality {
+  Value: Int
+  Id: String
+  ValueRange: Int
+  ValueLabel: String
+  MinLabel: String
+  Label: String
+  DisplayType: String
+  MaxLabel: String
+}
+
+type Keyword {
+  Count: Int
+  Keyword: String
+  Rating: Float
+}
+
+type Keywords {
+  HasResults: Boolean
+  KeywordList: [Keyword]
+}
+
+type Recommend {
+  TotalReviews: Int
+  Recommend: Int
+  DontRecommend: Int
+  RecommendPercent: Float
+}
+
+type FieldList {
+  FieldTitle: String
+  Total: Int
+  TotalReviews: Int
+  Average: Float
+}
+
+type FieldSummary {
+  FieldList: [FieldList]
+}
+
+type RatingList {
+  Rate: Int
+  Total: Int
+  TotalReviews: Int
+  PercentRating: Float
+}
+
+type RatingHistogram {
+  RatingList: [RatingList]
+}
+
+type User {
+  YourviewsUserId: Int
+  Name: String
+  Email: String
+  City: String
+  State: String
+  ZipCode: String
+  IPAddress: String
+  UserId: String
+}
+
+type CustomFields {
+  Name: String
+  Values: [String]
+}
+
+type Reviews {
+  ReviewId: Int
+  Rating: Int
+  Review: String
+  Date: String
+  Likes: Int
+  Dislikes: Int
+  ReferenceOrder: String
+  CustomerPhotos: [String]
+  User: User
+  CustomFields: [CustomFields]
+}
+
+type FilterValues {
+  FilterValueId: Int
+  Count: Int
+  Name: String
+}
+
+type Filters {
+  Name: String
+  FilterId: Int
+  FilterValues: [FilterValues]
+}
+
+type ReviewBattleItem {
+  ReviewId: Int
+  Rating: Int
+  Review: String
+  Date: String
+  Likes: Int
+  Dislikes: Int
+  ReferenceOrder: String
+  CustomerPhotos: [String]
+  User: User
+  CustomFields: [CustomFields]
+}
+
+type ReviewBattle {
+  HasResults: Boolean
+  WorstReview: ReviewBattleItem
+  BestReview: ReviewBattleItem
+}
+
+type ReviewElement {
+  Rating: Int
+  TotalRatings: Int
+  Keywords: Keywords
+  Recommend: Recommend
+  FieldSummary: FieldSummary
+  RatingHistogram: RatingHistogram
+  Reviews: [Reviews]
+  Filters: [Filters]
+  ReviewBattle: ReviewBattle
+}
+
+type Review {
+  HasErrors: Boolean
+  Total: Int
+  CurrentPage: Int
+  ErrorList: [String]
+  Element: ReviewElement
+}

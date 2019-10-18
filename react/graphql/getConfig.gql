@@ -1,0 +1,6 @@
+query getConfig {
+  getConfig {
+    storeKey
+    apiUser
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "vendor": "qdlab",
+  "name": "yourviewsreviews",
+  "title": "Yourviews Reviews",
+  "description": "Reviews de produtos da Yourviews",
+  "version": "0.0.3",
+  "builders": {
+    "react": "3.x",
+    "graphql": "1.x",
+    "node": "4.x",
+    "messages": "1.x",
+    "store": "0.x"
+  },
+  "credentialType": "absolute",
+  "policies": [
+    {
+      "name": "vbase-read-write"
+    },
+    {
+      "name": "outbound-access",
+      "attrs": {
+        "host": "service.yourviews.com.br",
+        "path": "/*"
+      }
+    },
+    {
+      "name": "outbound-access",
+      "attrs": {
+        "host": "myvtex.com",
+        "path": "/_v/graphql/private/v1"
+      }
+    }
+  ],
+  "mustUpdateAt": "2020-01-22",
+  "categories": [],
+  "registries": [
+    "smartcheckout"
+  ],
+  "scripts": {
+    "postreleasy": "vtex publish --verbose"
+  },
+  "billingOptions": {
+    "termsURL": "",
+    "support": {
+      "url": "https://yourviews.freshdesk.com/support/home"
+    },
+    "free": true
+  },
+  "settingsSchema": {
+    "title": "Yourviews Reviews",
+    "type": "object",
+    "properties": {
+      "storeKey": {
+        "type": "string",
+        "title": "Public Store Key ",
+        "description": "Your Store Key (find it at Account > Store Code)"
+      },
+      "apiUser": {
+        "type": "string",
+        "title": "API User",
+        "description": "Enter your API User"
+      },
+      "apiPassword": {
+        "type": "string",
+        "title": "API Password",
+        "description": "Enter your API Password"
+      }
+    }
+  },
+  "dependencies": {
+    "vtex.styleguide": "9.x",
+    "vtex.product-review-interfaces": "1.x",
+    "vtex.product-summary-context": "0.x",
+    "vtex.store-header": "2.x",
+    "vtex.store": "2.x",
+    "vtex.product-context": "0.x"
+  },
+  "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
+}

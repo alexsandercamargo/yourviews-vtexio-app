@@ -1,0 +1,14 @@
+{
+  "product-review-form.yourviews": {
+    "component": "ReviewForm"
+  },
+  "product-reviews.yourviews": {
+    "component": "Reviews"
+  },
+  "product-rating-summary.yourviews": {
+    "component": "RatingSummary"
+  },
+  "product-rating-inline.yourviews": {
+    "component": "RatingInline"
+  }
+}

@@ -1,0 +1,20 @@
+query productSummary($productId: String) {
+	productSummary(productId: $productId) {
+    
+    HasErrors
+    Total
+    CurrentPage
+    ErrorList
+    Element {
+      TotalRatings
+      Rating
+      TopOpinions {
+        Opinion
+        Likes
+        Dislikes
+        Rate
+      }
+    }
+
+  }
+}

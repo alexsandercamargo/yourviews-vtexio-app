@@ -1,0 +1,20 @@
+type TopOpinions {
+  Opinion: String
+  Likes: Int
+  Dislikes: Int
+  Rate: Int
+}
+
+type SummaryElement {
+  TotalRatings: Int
+  Rating: Int
+  TopOpinions: [TopOpinions]
+}
+
+type Summary {
+  HasErrors: Boolean
+  Total: Int
+  CurrentPage: Int
+  ErrorList: [String]
+  Element: SummaryElement
+}
