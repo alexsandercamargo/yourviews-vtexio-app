@@ -1,0 +1,18 @@
+### About
+Increase your conversion rate, estimulate repurchase, earn the trust from your customers and improve your organic search by using reviews.
+
+### Functionalities
+#### Store Reviews + NPS
+What do you customers think about your e-commerce? How do they evaluate the purchase process, customer service and delivery? Know better your weakness in the customer perspective and gain valueable insights to improve your operation.
+
+#### Product Reviews
+By using simple and direct question about your products you can understand exactly what your customers desire and want. Besides you improve your opportunities to reach and convert undecided customers.
+
+#### Questions & Answers
+Immediately solve questions from your customers and help them finalized their purchase. 
+
+
+### How to configure
+In order to use this app, you need an active account with Yourviews(https://www.yourviews.com.br/).
+
+Your can get the Configuration Keys on Yourviews Admin Panel. Go to Account > Store Code and grab them.

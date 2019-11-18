@@ -1,0 +1,17 @@
+### About
+Aumente su tasa de conversión, estimule la recompra, gane la confianza de los consumidores y mejore su búsqueda orgánica!
+
+### Functionalities
+#### Review de loja + NPS
+¿Qué piensan sus clientes de su e-commerce? Conozco mejor sus puntos débiles y fuertes. Use testimonios y sellado fiable para atraer a nuevos consumidores.
+
+#### Reviews de Produto
+Con preguntas sencillas y directas sobre sus productos, se puede entender exactamente lo que su consumidor quiere y la demanda. Además, aumentar las oportunidades para que usted alcance y convierta al cliente indeciso.
+
+#### Perguntas e Respostas
+¿Usted sabe que la pregunta acerca de um producto que impide que su cliente pueda cerrar una cuenta? Resuelva inmediatamente y aumente las posibilidades de conversión!
+
+### How to configure
+Para usar esta app tu necesitas una cuent activa en Yourviews(https://www.yourviews.com.br/).
+
+Usa las claves de configuración desde el admin Yourviews en Cuenta > Codigo de la Tienda.
