@@ -57,7 +57,7 @@ const RatingSummary = (props) => {
 
   return (
     !hasError && 
-        <div className="mt3">
+        <div className="yourviews-rating-summary mt3">
           {!loading && rating > 0 ?
             <div className="flex items-center pointer" onClick={() => goToReview()}>
               <div className="nowrap dib">
