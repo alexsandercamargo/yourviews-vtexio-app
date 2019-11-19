@@ -18,20 +18,28 @@ const RatingInline = props => {
       query: querySummary,
       variables: {
         productId: product.productId,
-      }
+      },
     }
 
-    props.client.query(query).then(response => {
-      setCanShow(true)
-      const element = response.data.productSummary.Element
-      if (element === null) return
+    props.client
+      .query(query)
+      .then(response => {
+        if (
+          response.data.productSummary.HasErrors ||
+          response.data.productSummary.HasErrors === null
+        )
+          throw new Error('Server error')
 
-      setRating(element.Rating)
-      setTotal(element.TotalRatings)
-      
-    }).catch(() => {
-      setCanShow(false)
-    })
+        setCanShow(true)
+        const element = response.data.productSummary.Element
+        if (element === null) return
+
+        setRating(element.Rating)
+        setTotal(element.TotalRatings)
+      })
+      .catch(() => {
+        setCanShow(false)
+      })
   }, [product, props.client])
 
   return (
@@ -40,6 +48,7 @@ const RatingInline = props => {
         <Stars rating={rating} />
         {total > 0 && <span>({total})</span>}
       </div>
+    )
   )
 }
 

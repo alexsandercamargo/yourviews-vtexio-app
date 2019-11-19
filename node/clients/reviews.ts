@@ -22,10 +22,21 @@ export default class Reviews extends ExternalClient {
       page = "1", count = "5", orderBy = "0", filters = ""
     } : GetReviewArgs): Promise<string> {
 
+    if (!storeKey || !apiUser || !apiPassword)
+      return ""
+
     const endpoint = `${storeKey}/review/${productId}/fullreview`
     const queryString = `?page=${page}&count=${count}&orderBy=${orderBy}&filters=${filters}`
     
-    const auth = "Basic " + new Buffer(apiUser + ":" + apiPassword).toString("base64");
+    const auth = "Basic " + new Buffer(apiUser + ":" + apiPassword).toString("base64")
+
+    console.log(this.http.get(endpoint + queryString, {
+      metric: 'yourviews-get-reviews',
+      headers: {
+        'Authorization': auth
+      }
+    }))
+
     return this.http.get(endpoint + queryString, {
       metric: 'yourviews-get-reviews',
       headers: {

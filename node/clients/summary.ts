@@ -17,8 +17,8 @@ export default class Summary extends ExternalClient {
       storeKey = "", apiUser = "", apiPassword = "", productId = ""
     } : GetSummaryArgs): Promise<string> {
 
-      if (!storeKey || !apiUser || !apiPassword)
-        console.error('[Yourviews] No API keys set. Please use the VTEX Admin to set them.')
+    if (!storeKey || !apiUser || !apiPassword)
+      return ""
       
     const endpoint = `${storeKey}/review/summary`
     const queryString = `?productId=${productId}`

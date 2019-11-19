@@ -5,38 +5,34 @@ import { useEffect } from 'react'
 import { Spinner } from 'vtex.styleguide'
 
 const ReviewForm = props => {
-  console.log('a');
   const { storeKey } = props.data.getConfig || {}
   const { query } = useRuntime()
 
-  // const [loaded, setLoaded] = useState(false)
-  // const [productId, setProductId] = useState(null)
-  // const [, setReturnPage] = useState(null)
-
   useEffect(() => {
-    if (!props.data.loading) {
-      let duplicated = document.getElementById("yv__script-form")
-      if (duplicated) 
-        duplicated.remove()
+    if (props.data.loading) 
+      return
 
-      var script = document.createElement('script')
-      script.type = 'text/javascript'
-      script.id = 'yv__script-form'
-      script.onload = () => {
-        let returnPage = window.location.origin + '/'
-        if (query.product_id && query.product_name && query.return_page) 
-          returnPage = processData()
-          
-        window.yv.returnPage = returnPage 
-      }
-      console.log('storeKey ' + storeKey) 
-      script.src = `https://service.yourviews.com.br/script/${storeKey}/yvapi.js`
-      document.body.appendChild(script)
-  }
+    let duplicated = document.getElementById("yv__script-form")
+    if (duplicated) 
+      duplicated.remove()
+
+    var script = document.createElement('script')
+    script.type = 'text/javascript'
+    script.id = 'yv__script-form'
+    script.onload = () => {
+      let returnPage = window.location.origin + '/'
+      if (query.product_id && query.product_name && query.return_page) 
+        returnPage = processData()
+        
+      window.yv.returnPage = returnPage 
+    }
+
+    script.src = `https://service.yourviews.com.br/script/${storeKey}/yvapi.js`
+    document.body.appendChild(script)
+
   }, [props.data, query.product_id, query.return_page])
 
   const processData = () => {
-    console.log(query) 
     const returnPage = window.location.origin + query.return_page
 
     window.yv.productId = query.product_id

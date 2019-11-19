@@ -10,7 +10,6 @@ import ReviewEmpty from './components/review/ReviewEmpty'
 const itemPerPage = 5
 
 class Reviews extends React.Component {
-
   constructor(props) {
     super(props)
     this.state = {
@@ -20,20 +19,20 @@ class Reviews extends React.Component {
         from: 1,
         to: itemPerPage,
         total: itemPerPage,
-        current: 1
+        current: 1,
       },
       orderBy: 0, //0: Recente;
-      filters: "",
+      filters: '',
       error: {
         hasError: false,
-        item: null
+        item: null,
       },
-      loading: false
+      loading: false,
     }
 
     this.reviewRef = React.createRef()
   }
-  
+
   componentDidMount() {
     this.getReviewData(true)
   }
@@ -42,92 +41,109 @@ class Reviews extends React.Component {
     if (this.props.productQuery.product && !prevProps.productQuery.product)
       this.getReviewData(true)
   }
-  
-  render(){
+
+  render() {
     return (
-      !this.state.error.hasError &&
-      <Box>
-        {this.state.loading &&
-          <Spinner/> }
+      !this.state.error.hasError && (
+        <Box>
+          {this.state.loading && <Spinner />}
 
-        {!this.state.loading && this.state.reviews.length < 1 &&
-          <ReviewEmpty writeReview={() => this.writeReview()}/>}
+          {!this.state.loading && this.state.reviews.length < 1 && (
+            <ReviewEmpty writeReview={() => this.writeReview()} />
+          )}
 
-        {!this.state.loading && this.state.reviews.length > 0 &&
-          <div ref={this.reviewRef} id="yv-reviews">
-            <ReviewContainer 
-              summaryReviews={this.state.summaryReviews}
-              reviews={this.state.reviews}
-              setFilter={this.setFilter}/>
-              
-            {this.state.reviews.length > itemPerPage &&
-              <Pagination
-                currentItemFrom={this.state.paging.from}
-                currentItemTo={this.state.paging.to}
-                textOf="de"
-                textShowRows="Linhas"
-                totalItems={this.state.paging.total}
-                onNextClick={() => this.changePage(1)}
-                onPrevClick={() => this.changePage(-1)}/>}
+          {!this.state.loading && this.state.reviews.length > 0 && (
+            <div ref={this.reviewRef} id="yv-reviews">
+              <ReviewContainer
+                summaryReviews={this.state.summaryReviews}
+                reviews={this.state.reviews}
+                setFilter={this.setFilter}
+              />
 
-            <Button variation="primary" onClick={() => this.writeReview()}>
-              Escrever avaliação
-            </Button>
-          </div>}
+              {this.state.reviews.length > itemPerPage && (
+                <Pagination
+                  currentItemFrom={this.state.paging.from}
+                  currentItemTo={this.state.paging.to}
+                  textOf="de"
+                  textShowRows="Linhas"
+                  totalItems={this.state.paging.total}
+                  onNextClick={() => this.changePage(1)}
+                  onPrevClick={() => this.changePage(-1)}
+                />
+              )}
+
+              <Button variation="primary" onClick={() => this.writeReview()}>
+                Escrever avaliação
+              </Button>
+            </div>
+          )}
         </Box>
-  )}
+      )
+    )
+  }
 
-  getReviewData = (notScroll) => {
+  getReviewData = notScroll => {
     const { productId } = this.props.productQuery.product || {}
-    if (!productId)
-      return
+    if (!productId) return
 
     let query = {
       query: queryRatingSummary,
       variables: {
-        productId: productId,//"7935251",
-        page:  this.state.paging.current,
+        productId: productId, //"7935251",
+        page: this.state.paging.current,
         count: itemPerPage,
         orderBy: this.state.orderBy,
         filters: this.state.filters || '',
-      }
+      },
     }
 
-    this.setState({loading: true})
+    this.setState({ loading: true })
     this.props.client
-    .query(query)
-    .then(response => {
-      const element = response.data.productReviews.Element
-      if(element === null)
-        return
-      let paging = this.state.paging
-      paging.total = element.TotalRatings
+      .query(query)
+      .then(response => {
+        if (
+          response.data.productReviews.HasErrors ||
+          response.data.productReviews.HasErrors === null
+        )
+          throw new Error('Server error')
 
-      this.setState({
-        reviews: element.Reviews,
-        summaryReviews: element
-      }, () => this.afterLoadReview(notScroll))
-    })
-    .catch(error => {
-      const errorItem = {
-        item: error,
-        hasError: true
-      }
-      this.setState({
-        error: errorItem
+        const element = response.data.productReviews.Element
+        if (element === null) return
+        let paging = this.state.paging
+        paging.total = element.TotalRatings
+
+        this.setState(
+          {
+            reviews: element.Reviews,
+            summaryReviews: element,
+          },
+          () => this.afterLoadReview(notScroll)
+        )
       })
-    })
-    .finally(() => {
-      this.setState({loading: false})
-    })
+      .catch(error => {
+        const errorItem = {
+          item: error,
+          hasError: true,
+        }
+        this.setState({
+          error: errorItem,
+        })
+      })
+      .finally(() => {
+        this.setState({ loading: false })
+      })
   }
 
-  afterLoadReview = (notScroll) => {
+  afterLoadReview = notScroll => {
     setTimeout(() => {
-      if (!notScroll && this.state.reviews.length > 0 && this.reviewRef.current !== null)
+      if (
+        !notScroll &&
+        this.state.reviews.length > 0 &&
+        this.reviewRef.current !== null
+      )
         window.scrollTo({
           top: this.reviewRef.current.offsetTop - 100,
-          behavior: "smooth"
+          behavior: 'smooth',
         })
     }, 100)
 
@@ -136,12 +152,17 @@ class Reviews extends React.Component {
 
   setFilter = (filterIdx, valueIdx) => {
     let newSummary = this.state.summaryReviews
-    newSummary.Filters[filterIdx].FilterValues[valueIdx].Active = 
-      !(this.state.summaryReviews.Filters[filterIdx].FilterValues[valueIdx].Active || false)
+    newSummary.Filters[filterIdx].FilterValues[valueIdx].Active = !(
+      this.state.summaryReviews.Filters[filterIdx].FilterValues[valueIdx]
+        .Active || false
+    )
 
-    this.setState({
-      summaryReviews: newSummary
-    }, this.loadFilters)
+    this.setState(
+      {
+        summaryReviews: newSummary,
+      },
+      this.loadFilters
+    )
   }
 
   loadFilters = () => {
@@ -155,9 +176,12 @@ class Reviews extends React.Component {
       })
     })
 
-    this.setState({
-      filters: filtersStr 
-    }, this.getReviewData)
+    this.setState(
+      {
+        filters: filtersStr,
+      },
+      this.getReviewData
+    )
   }
 
   activeFilters = () => {
@@ -168,25 +192,27 @@ class Reviews extends React.Component {
       filter.FilterValues.forEach((value, idxValue) => {
         if (filters.indexOf(value.FilterValueId) > -1)
           newSummary.Filters[idxFilter].FilterValues[idxValue].Active = true
-        else
-          newSummary.Filters[idxFilter].FilterValues[idxValue].Active = false
+        else newSummary.Filters[idxFilter].FilterValues[idxValue].Active = false
       })
     })
 
     this.setState({
-      summaryReviews: newSummary
+      summaryReviews: newSummary,
     })
   }
 
-  changePage = (change) => {
+  changePage = change => {
     let paging = this.state.paging
     paging.current = this.state.paging.current + change
     paging.from = itemPerPage * paging.current - (itemPerPage - 1)
     paging.to = itemPerPage * paging.current
 
-    this.setState({
-      paging: paging
-    }, this.getReviewData)
+    this.setState(
+      {
+        paging: paging,
+      },
+      this.getReviewData
+    )
   }
 
   writeReview = () => {
@@ -197,14 +223,13 @@ class Reviews extends React.Component {
     const name = `&product_name=${prod.productName || prod.titleTag}`
     const url = `&return_page=/${prod.linkText}/p`
     const show = `&yv-write-review=true`
-    console.log(this.props.productQuery)
-    console.log(this.props.productQuery.product)
+
     this.props.runtime.navigate({
       to: page,
       query: id + name + url + show,
       params: {
-        product: this.props.productQuery.product
-      }
+        product: this.props.productQuery.product,
+      },
     })
   }
 }
