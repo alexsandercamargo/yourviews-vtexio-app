@@ -31,7 +31,7 @@
       }
     }
   ],
-  "mustUpdateAt": "2020-01-22",
+  "mustUpdateAt": "2021-06-01",
   "categories": [],
   "registries": [
     "smartcheckout"
@@ -40,7 +40,7 @@
     "postreleasy": "vtex publish --verbose"
   },
   "billingOptions": {
-    "termsURL": "",
+    "termsURL": "https://yv-comercial.s3.amazonaws.com/Contrato-Padrao.pdf",
     "support": {
       "url": "https://yourviews.freshdesk.com/support/home"
     },
