@@ -44,7 +44,34 @@
     "support": {
       "url": "https://yourviews.freshdesk.com/support/home"
     },
-    "free": true
+    "policies": [
+      {
+        "currency": "BRL",
+        "billing": {
+          "taxClassification": "software",
+          "items": [
+            {
+              "itemCurrency": "BRL",
+              "fixed":  289
+            },
+            {
+              "itemCurrency": "BRL",
+              "calculatedByMetricUnit": {
+                "metricId": "orderInvoiced",
+                "metricName": "Invoiced Orders",
+                "minChargeValue": 0,
+                "ranges": [
+                  {
+                    "exclusiveFrom": 0,
+                    "multiplier": 1.0
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
   },
   "settingsSchema": {
     "title": "Yourviews Reviews",
@@ -58,12 +85,12 @@
       "apiUser": {
         "type": "string",
         "title": "API User",
-        "description": "Enter your API User"
+        "description": "Enter your API User (find it at Account > Store Code)"
       },
       "apiPassword": {
         "type": "string",
         "title": "API Password",
-        "description": "Enter your API Password"
+        "description": "Enter your API Password (find it at Account > Store Code)"
       }
     }
   },
