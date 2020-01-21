@@ -33,9 +33,7 @@
   ],
   "mustUpdateAt": "2021-06-01",
   "categories": [],
-  "registries": [
-    "smartcheckout"
-  ],
+  "registries": ["smartcheckout"],
   "scripts": {
     "postreleasy": "vtex publish --verbose"
   },
@@ -52,21 +50,7 @@
           "items": [
             {
               "itemCurrency": "BRL",
-              "fixed":  289
-            },
-            {
-              "itemCurrency": "BRL",
-              "calculatedByMetricUnit": {
-                "metricId": "orderInvoiced",
-                "metricName": "Invoiced Orders",
-                "minChargeValue": 0,
-                "ranges": [
-                  {
-                    "exclusiveFrom": 0,
-                    "multiplier": 1.0
-                  }
-                ]
-              }
+              "fixed": 289
             }
           ]
         }
