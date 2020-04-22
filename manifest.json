@@ -33,29 +33,18 @@
   ],
   "mustUpdateAt": "2021-06-01",
   "categories": [],
-  "registries": ["smartcheckout"],
+  "registries": [
+    "smartcheckout"
+  ],
   "scripts": {
     "postreleasy": "vtex publish --verbose"
   },
   "billingOptions": {
+    "free": true,
     "termsURL": "https://yv-comercial.s3.amazonaws.com/Contrato-Padrao.pdf",
     "support": {
       "url": "https://yourviews.freshdesk.com/support/home"
-    },
-    "policies": [
-      {
-        "currency": "BRL",
-        "billing": {
-          "taxClassification": "software",
-          "items": [
-            {
-              "itemCurrency": "BRL",
-              "fixed": 289
-            }
-          ]
-        }
-      }
-    ]
+    }   
   },
   "settingsSchema": {
     "title": "Yourviews Reviews",
