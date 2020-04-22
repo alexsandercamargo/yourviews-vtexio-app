@@ -3,7 +3,7 @@
   "name": "yourviewsreviews",
   "title": "Yourviews Reviews",
   "description": "Reviews de produtos da Yourviews",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "builders": {
     "react": "3.x",
     "graphql": "1.x",
@@ -44,7 +44,7 @@
     "termsURL": "https://yv-comercial.s3.amazonaws.com/Contrato-Padrao.pdf",
     "support": {
       "url": "https://yourviews.freshdesk.com/support/home"
-    }   
+    }
   },
   "settingsSchema": {
     "title": "Yourviews Reviews",
