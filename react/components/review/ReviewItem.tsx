@@ -61,7 +61,7 @@ const ReviewItem = (props: any) => {
           </li>
         }
       </ul>
-      {props.review.CustomerPhotos.length > 0 &&
+      {props.review.CustomerPhotos && props.review.CustomerPhotos.length > 0 &&
         <div className="mt6 flex flex-wrap items-start">
           {props.review.CustomerPhotos.map((photo: string, i: number) => {
             return (
