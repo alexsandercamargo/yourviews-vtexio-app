@@ -60,7 +60,7 @@ class Reviews extends React.Component {
                 setFilter={this.setFilter}
               />
 
-              {this.state.reviews.length > itemPerPage && (
+              {this.state.reviews.length > 0 && (
                 <Pagination
                   currentItemFrom={this.state.paging.from}
                   currentItemTo={this.state.paging.to}
